@@ -124,6 +124,7 @@ while(True):
 	print('2. Recuperar item')
 	print('3. Deletar item')
 	print('4: Mostrar Tabela')
+	print('5: Teste de performance')
 	escolha_usuario = input()
 
 	clear()
@@ -167,6 +168,38 @@ while(True):
 
 	elif (escolha_usuario == '4') or (escolha_usuario.lower() == 'mostrar') or (escolha_usuario.lower() == 'mostrar tabela'):
 		print(tabela)
+		print('Aperte Enter para continuar')
+		input()
+
+	elif (escolha_usuario == '5') or (escolha_usuario.lower() == 'teste') or (escolha_usuario.lower() == 'teste de velocidade'):
+		chaves = [(str(x) + str(x) + str(x)).zfill(20) for x in range(100000)]
+		print('Mudando tamanho da tabela')
+		comeco = time.time()
+		vocab_size = 100000
+		tabela_teste = TabelaHash(vocab_size)
+		fim = time.time()
+		print('Tempo de criacao:', fim - comeco)
+		print('Inserindo 100000 itens com chaves de 20 caracteres')
+		comeco = time.time()
+		for chave in chaves:
+			tabela.insert(chave, {'valor': chave, 'chave': chave})
+		fim = time.time()
+		print('Tempo de insercao:', fim - comeco)
+		print('Média do tempo de insercao:', (fim - comeco)/100000)
+		print('Recuperando 100000 itens')
+		comeco = time.time()
+		for chave in chaves:
+			tabela.get(chave)
+		fim = time.time()
+		print('Tempo de recuperação:', fim - comeco)
+		print('Média do tempo de recuperação:', (fim - comeco)/100000)
+		print('Deletando 100000 itens')
+		comeco = time.time()
+		for chave in chaves:
+			tabela.remove(chave)
+		fim = time.time()
+		print('Tempo de deleção:', fim - comeco)
+		print('Média do tempo de deleção:', (fim - comeco)/100000)
 		print('Aperte Enter para continuar')
 		input()
 
