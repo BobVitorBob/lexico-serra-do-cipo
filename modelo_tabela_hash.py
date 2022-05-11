@@ -86,12 +86,12 @@ class TabelaHash:
 	def __str__(self):
 		string = 'Tamanho total da tabela: ' + str(self.tabela_size) + '\n'
 		for i in range(self.tabela_size):
-			string_parcial = 'Posição ' + str(i) + '({} itens)'.format(len(self.tabela_hash[i])) + ': '
+			string_parcial = 'Posição ' + str(i) + '({} itens)'.format(len(self.tabela_hash[i])) + ': \n\n'
 			for j in range(len(self.tabela_hash[i])):
-				string_parcial += str(self.tabela_hash[i][j]['valor'])
-				if j != len(self.tabela_hash[i]): string_parcial += ', '
+				string_parcial += '{}: {}\n'.format(str(self.tabela_hash[i][j]['chave']), str(self.tabela_hash[i][j]['valor']))
+				if j != len(self.tabela_hash[i]): string_parcial += '\n'
 
-			string += string_parcial + '\n'
+			string += string_parcial + '\n\n'
 		return string
 
 # Lendo o csv pra pegar o dataframe
