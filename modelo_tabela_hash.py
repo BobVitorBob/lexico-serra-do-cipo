@@ -105,7 +105,7 @@ tabela = TabelaHash(vocab_size)
 # Inserindo os itens
 
 for index, row in df.iterrows():
-    tabela.insert(row['palavra'], {
+    tabela.insert(row['palavra'].lower(), {
         'palavra': row['palavra'],
 		'dicionarizado': row['dicionarizado'],
 		'categoria_gramatical': row['categoria_gramatical'],
@@ -140,9 +140,9 @@ while(True):
 			if chave == 'q!': break
 			valor = input()
 			if valor == 'q!': break
-			item[chave] = valor
+			item[chave.lower()] = valor
 			clear()
-		tabela.insert(chave_item, item)
+		tabela.insert(chave_item.lower(), item)
 		print('Item {} inserido na tabela'.format(item))
 		print('Aperte Enter para continuar')
 		input()
@@ -151,7 +151,7 @@ while(True):
 		print('Digite a chave do item que será recuperado')
 		chave_item = input()
 		clear()
-		item = tabela.get(chave_item)
+		item = tabela.get(chave_item.lower())
 		if item is None: print('Item não encontrado!')
 		else: print('Item recuperado!', item, '')
 		print('Aperte Enter para continuar')
@@ -160,7 +160,7 @@ while(True):
 	elif (escolha_usuario == '3') or (escolha_usuario.lower() == 'deletar') or (escolha_usuario.lower() == 'deletar item'):
 		print('Digite a chave do item que será deletado')
 		chave_item = input()
-		tabela.remove(chave_item)
+		tabela.remove(chave_item.lower())
 		clear()
 		print('Item removido!')
 		print('Aperte Enter para continuar')
@@ -183,21 +183,21 @@ while(True):
 		print('Inserindo 1000000 itens com chaves de 20 caracteres')
 		comeco = time.time()
 		for chave in chaves:
-			tabela_teste.insert(chave, {'valor': chave, 'chave': chave})
+			tabela_teste.insert(chave.lower(), {'valor': chave, 'chave': chave})
 		fim = time.time()
 		print('Tempo de insercao:', fim - comeco)
 		print('Média do tempo de insercao:', (fim - comeco)/1000000)
 		print('Recuperando 1000000 itens')
 		comeco = time.time()
 		for chave in chaves:
-			tabela_teste.get(chave)
+			tabela_teste.get(chave.lower())
 		fim = time.time()
 		print('Tempo de recuperação:', fim - comeco)
 		print('Média do tempo de recuperação:', (fim - comeco)/1000000)
 		print('Deletando 1000000 itens')
 		comeco = time.time()
 		for chave in chaves:
-			tabela_teste.remove(chave)
+			tabela_teste.remove(chave.lower())
 		fim = time.time()
 		print('Tempo de deleção:', fim - comeco)
 		print('Média do tempo de deleção:', (fim - comeco)/1000000)
