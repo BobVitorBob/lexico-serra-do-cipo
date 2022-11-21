@@ -2,6 +2,7 @@ import math
 import time
 import random
 import pandas as pd
+import sys
 from os import system, name
 
 def clear():
@@ -125,6 +126,7 @@ while(True):
 	print('3. Deletar item')
 	print('4: Mostrar Tabela')
 	print('5: Teste de performance')
+	print('6: Sair')
 	escolha_usuario = input()
 
 	clear()
@@ -204,6 +206,8 @@ while(True):
 		print('Aperte Enter para continuar')
 		input()
 
+	elif (escolha_usuario == '6') or (escolha_usuario.lower() == 'sair')):
+		sys.exit()
 	else:
 		print('Digite uma opção válida!')
 		time.sleep(3)
